@@ -1,7 +1,7 @@
 <p align="center"><img src="assets/mimi.png" alt="Mimi, the mimiminer mascot" width="144"></p>
 
 # mimiminer 0.0.1
-
+I coded this with the help of Codex just because I'm bored during a hackathon and has too much quota.
 A small Windows desktop app for mining inside a selected block volume in Minecraft Java Edition.
 
 **NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**
