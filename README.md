@@ -2,6 +2,8 @@
 
 # mimiminer 0.0.1
 I coded this with the help of Codex just because I'm bored during a hackathon and has too much quota.
+
+I just realized they don't allow to automine in this server tho, use it as ur own risk.
 A small Windows desktop app for mining inside a selected block volume in Minecraft Java Edition.
 
 **NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**
