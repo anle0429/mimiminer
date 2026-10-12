@@ -1,0 +1,28 @@
+mimiminer 0.0.1 — Freeware release terms
+Publisher: An Le (@anle0429)
+Contact: work.anle05@gmail.com
+
+To the extent the publisher controls the applicable rights, you may download
+and run the unmodified release for personal, noncommercial use that complies
+with applicable law, Minecraft/Microsoft policies and the rules of the server
+you access. You may share the complete unmodified release package for free,
+provided these terms and all third-party notices remain included.
+
+The application source code is not distributed or licensed by these terms.
+No permission to sell the application, use its branding to imply endorsement,
+or obtain unauthorized access to services is granted. All other applicable
+rights remain reserved. These terms do not claim ownership of third-party
+software or override permissions granted by its licenses or mandatory law.
+
+Bundled third-party components are licensed under their own terms, provided
+in THIRD_PARTY_NOTICES.md and the licenses directory. Those terms control
+their respective components and are not restricted by these app terms.
+
+THE APP IS PROVIDED AS IS, WITHOUT WARRANTIES TO THE EXTENT PERMITTED BY LAW.
+There is no warranty of compatibility, uninterrupted operation, mining speed,
+or protection from account or server enforcement. No support commitment is
+provided. No limitation here excludes rights or liability that applicable law
+does not allow to be excluded.
+
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG
+OR MICROSOFT. Not affiliated with or endorsed by TalonMC, Fxdedglory or Baritone.

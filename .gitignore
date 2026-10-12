@@ -1,0 +1,14 @@
+*.exe
+*.zip
+*.jar
+*.py
+*.java
+*.pyc
+profile.json
+entry-memory/
+*.log
+*.jsonl
+.env
+.env.*
+__pycache__/
+private-*/

@@ -1,0 +1,10 @@
+mimiminer 0.0.1
+Publisher: An Le (@anle0429)
+Contact: work.anle05@gmail.com
+
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+
+Freeware for personal use where applicable game policies and server rules permit automation. Source code is not licensed or distributed. Third-party components retain their own licenses and rights. No warranty, support commitment, ban-free guarantee, or uptime guarantee is provided.
+
+Acknowledgments: Fxdedglory/Minecraft-Auto-Miner (inspiration), cabaletta/Baritone and contributors (optional, separately installed). No endorsement is implied. Upstream Minecraft-Auto-Miner code and Baritone binaries are not included.
+The new Mimi robot logo was generated specifically for this release using OpenAI image generation, without reference images. The previously supplied third-party logo is not part of this release.
