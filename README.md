@@ -10,6 +10,19 @@ A small Windows desktop app for mining inside a selected block volume in Minecra
 
 Publisher: **An Le ([anle0429](https://github.com/anle0429))**. Product and rights inquiries: **[work.anle05@gmail.com](mailto:work.anle05@gmail.com)**. The publisher is responsible for this app. It is not affiliated with TalonMC or the projects credited below.
 
+## What's new in the updated v0.0.2
+
+Updated **October 13, 2026**, with client mod **0.4.5**:
+
+- **In-game Hub:** a transparent panel with Minecraft's font, configurable shortcut/opacity, position capture, settings and Start/Stop/Save/Resume. Mining continues while this panel is open.
+- **Pickaxe upgrades:** optional automatic purchases using your selected Tokens, Orbs and/or Gems. Skips locked/MAXED/unrecognized items and checks observed level progress before buying again.
+- **Low-BPS recovery:** request `/mine reset`, then `/mine go`, `/mine teleport` or your configured return command. At least 12 seconds between reset requests.
+- **Player balances:** read visible money, Tokens, Orbs/Ores, Gems and Credits, including K/M/B/T/Q abbreviations.
+- **Background fixes:** keep the bot running through mine inspection, return teleports and owned pickaxe-menu transitions after Alt+Tab.
+- **Minimal desktop UI:** Minecraft-style Monocraft font, compact Mine view and persistent Start/Stop controls. Adaptive scan optimization and Pause & Alert are included.
+
+Download the updated EXE and reinstall the bundled mod, then restart Minecraft. See **[release notes](RELEASE_NOTES.md)** for tests and limits. This replaces the earlier v0.0.2 download; the current EXE SHA-256 starts with **`19b79e36aeb8`**.
+
 ## Compatibility — please read first
 
 **This release works only with certain server configurations. TalonMC Prison has been tested, and short mining trials on Akuma Prison now work with the setup below. It is not a universal auto-miner.**
@@ -27,14 +40,14 @@ Successful testing on TalonMC **does not mean TalonMC permits or endorses this a
 
 ## Download
 
-Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.2**. Open it to get started. The executable includes its license notices under **About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
+Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.2**. Open it to get started. The executable includes its license notices under **Settings → About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
 
 The app includes its own runtime, so you do not need to install Python. You still need a licensed Minecraft Java account, the Minecraft Launcher and internet access for first-time setup. This release is unsigned; check the release SHA-256 before running a downloaded copy. Do not disable security protection to run it.
 
 ## First-time setup
 
 1. Install the official Minecraft Launcher and sign in with your Minecraft Java account. Run Java Edition once, then close the game and Launcher.
-2. Open **mimiminer.exe**. Click **Minecraft • Choose profile / Install mod**.
+2. Open **mimiminer.exe**. Open **Settings**, then click **Minecraft setup**.
 3. Click **AUTOMATIC SETUP • MINECRAFT 1.21 + MOD**, then wait for setup to finish. If you already use Fabric 1.21, select that profile's game folder and click **INSTALL MOD** instead.
 4. Open the Launcher and select **mimiminer 1.21**, or the Fabric 1.21 profile you chose. Launch the game.
 5. Enter a mine where you are allowed to use automation and select a suitable pickaxe in your hotbar.
@@ -43,13 +56,32 @@ Minecraft itself is downloaded through the Launcher. This package does not inclu
 
 ## Set your mine and start
 
+The minimal **Mine** view keeps corners, current position, session state, direct-client BPS and Start/Stop visible. **Settings** contains your return command, toggle key, Minecraft setup, scan/movement options and Pause & Alert. Settings scrolls separately, while Start/Stop remain available.
+
+The **in-game Hub** opens with **Right Shift** by default. Open the EXE once and leave it running. The transparent panel uses Minecraft's current font and lets you set positions, save options, start, stop and manually resume alerts without switching apps. Change the Hub key and opacity in its **Settings** tab, or change the key through Minecraft Controls. Existing custom keys are preserved. Choose a key that does not conflict with your game controls or Windows shortcuts. Mining continues with this Hub open; chat, inventory and other menus still pause mining. The desktop app uses the bundled [Monocraft](https://github.com/IdreesInc/Monocraft) font.
+
+**Prison automation** is configurable in the desktop Settings and the in-game Hub:
+
+- **Reset at low BPS:** measures direct client block breaks over an active window, then requests `/mine reset` and your configured return command when low progress persists. Idle recovery can also request a reset. The app waits at least **12 seconds** between reset requests and warms up after teleports or menu pauses. The server can reject a command; delivery to the client does not confirm a server reset. Raise or lower the BPS threshold for your pickaxe.
+- **Auto upgrade pickaxe:** opens the held pickaxe with the normal right-click action and reads recognized English upgrade tooltips, including small-cap text and resource-pack glyphs. It skips locked and MAXED items, buys affordable single or explicitly advertised bulk upgrades, and checks that the level increased before buying again. It works through each selected currency, resumes mining after a bounded cycle, and checks again later. Cached tooltips get one menu refresh; a purchase that remains unconfirmed is skipped for that cycle.
+- **Currencies:** Tokens is selected initially; Orbs and Gems are separate optional switches. Akuma's observed menu says **Orbs**, not Ores. The app does not assume that differently named currencies mean the same thing. Rounded sidebar balances are estimates. Unknown menus and prices are skipped. Auto upgrade is off until enabled, and Pause & Alert interrupts upgrade automation too.
+
+The balance reader supports K/M/B/T/Q suffixes and keeps the server's abbreviated balance text in the in-game panel. The local telemetry also records the visible sidebar lines to diagnose server formatting differences.
+
+These additions require the bundled client mod **0.4.5** and a Minecraft restart. Download the updated v0.0.2 release, close Minecraft, and use **Settings → Minecraft setup → INSTALL MOD** for your current Fabric 1.21 profile.
+
+The latest Akuma trial completed 90 seconds with background mining, currency-tab checks and reset/return transitions. Tokens purchases were verified in earlier short trials; current Orb enchants were level-locked, so Orb purchases remain unverified. This does not establish multi-hour uptime or compatibility with other upgrade menus.
+
 1. Choose **two opposite corners of the entire block volume**, including its depth. For example, Pos 1 `100, 70, 100` and Pos 2 `120, 40, 120` describe an inclusive rectangular volume.
 2. Enter each corner's **X, Y, Z** values. Alternatively, stand at a corner and click **Use my position** beside that Pos. This captures the block coordinate where you are standing; adjust it manually if the mine's corner block is below you or farther down. F3 can help you check coordinates.
-3. Set **Mine command** to the return command your server accepts, such as `/mine teleport`. Test the command yourself first. Commands vary by server.
-4. Enable **Fast adaptive sweep**. Enable **Auto teleport recovery** if you want to return when mining stops making progress. Leave **Flight mode** off for ground movement; turn it on only when flight is available and allowed on your server.
+3. Open **Settings** and set **Return command** to the command your server accepts, such as `/mine teleport`. Test the command yourself first. Commands vary by server.
+4. In **Settings**, enable **Fast adaptive sweep**. Enable **Auto teleport recovery** if you want to return when mining stops making progress. Leave **Flight mode** off for ground movement; turn it on only when flight is available and allowed on your server.
 5. Click **START**, return to Minecraft, and close menus before the countdown finishes.
-6. Press **F8** to turn mining on or off. Click the **Toggle key** button to choose a different key. You can also click **STOP**.
+6. Press **F8** to turn mining on or off. Open **Settings** and click the **Toggle key** button to choose a different key. You can also click **STOP**.
 7. Leave **Run in background** enabled to keep mining when you Alt+Tab to another application. It is enabled by default. Turn it off if you prefer mining to pause whenever Minecraft loses focus.
+8. **Pause & Alert** is enabled by default. Open **Settings → Pause & Alert** to set a detection distance from **0.5 to 64 blocks** (default **8**), enable sound, and choose the optional **"what's up?"** greeting. A nearby player or incoming chat mentioning your account username stops mining and changes START to **RESUME**. The greeting can be sent at most once per START, only for proximity alerts.
+
+Alerts remain paused even after the player leaves. Click **RESUME** yourself when ready, then close any Minecraft menu. This acknowledges players already nearby; a new arrival or a player returning later can trigger another pause. F8 stops the active worker; it is not the alert-resume button. Disabling Pause & Alert does not automatically clear an existing pause.
 
 Stop before changing the corners. Opening chat, a game menu or a loading overlay still pauses mining inputs. With **Run in background** enabled, switching away from Minecraft continues the active bot; Minecraft's automatic lost-focus menu is suppressed only while the bot's connection remains alive. It does not lock your desktop cursor or send mining keys to other apps. Keep the app and Minecraft running; sleep, suspension, disconnection and an unloaded world cannot continue mining.
 
@@ -61,19 +93,31 @@ On **Akuma**, enter **Prison** first, then use **`/mine go`** and select corners
 
 **Flight mode** off requests ground movement, including turning off actual flight if it is observed after a teleport. Ground scanning includes nearby side blocks when standing on a protected floor. Short ground-only background trials now pass, including mine inspection without opening Minecraft's lost-focus menu. Complete live ground operation across all rank changes and extended sessions remains unverified.
 
+**Auto-optimize scan** is enabled by default with Fast adaptive sweep. The Hub displays the current strategy, measured direct-client BPS and its reason for changing. It compares short trials, retains a strategy when improvements repeat, and reassesses after teleports, mine block changes or verified size changes. Pause & Alert and normal mining boundaries remain in effect. Turn it off to use the fixed adaptive sweep. This requires client mod **0.4.4** and a Minecraft restart.
+
+The displayed scan BPS measures local successful block interactions over completed active windows. It excludes paused time and does not count the server scoreboard bonus from Nuke effects. It is not a server-confirmed throughput guarantee. Brief trials can reduce output, and no strategy is guaranteed best in every situation. Learning stays in memory for the current Minecraft session; it is not uploaded.
+
 ## Options
 
 | Option | Purpose |
 | --- | --- |
 | Fast adaptive sweep | Continuously scan for reachable blocks while mining |
+| Auto-optimize scan | Compare short mining trials and select a scan strategy for the observed environment |
 | Run in background | Continue the active bot when Minecraft loses focus; menus still pause it |
 | Auto teleport recovery | Send your mine command when progress stalls, with a cooldown between retries |
+| Reset at low BPS | Request `/mine reset`, then return; minimum 12 seconds between reset requests |
+| Auto upgrade pickaxe | Buy recognized affordable upgrades using the currencies you enable |
+| In-game Hub | Transparent panel opened with Right Shift; configurable in-game key and opacity |
 | Flight mode | On: use server-granted flight and maintain height. Off: request ground movement. |
 | Auto-detect mine size | Verify nearby mine boundaries, update Pos and save the route; turn off for a fixed manual region |
+| Pause & Alert | Stop for nearby players or username mentions and wait for manual RESUME |
+| Alert settings | Detection radius, sound/test sound, and optional one-time "what's up?" greeting |
 | Sprint | Sprint while moving |
 | Baritone navigation | Optional navigation using a separately installed compatible Baritone; disabled by default |
 
 **Baritone is not required or bundled.** Leave its option off for the standard mining mode. If you enable it without installing a compatible version, turn it off or restart Minecraft after installing Baritone separately.
+
+Pause & Alert requires the updated client mod and a Minecraft restart. Detection covers player entities present in the loaded client world; it does not identify staff roles or guarantee avoiding a ban. Player-shaped NPCs may also trigger it. Chat matching uses your account username, so a server nickname alone may not match. This build waits for manual RESUME after alerts; automatic logout/rejoin needs a separate server-specific flow.
 
 ## Troubleshooting
 
@@ -88,7 +132,7 @@ For an issue report, include the app version, Minecraft version, server, relevan
 
 ## Data and removal
 
-Settings are stored locally at `%LOCALAPPDATA%\mimiminer\profile.json`; learned entry points are stored in the adjacent `entry-memory` folder. The client mod writes local telemetry under the selected game folder's `mam_telemetry` directory, which can include server addresses, coordinates and held-item information. The app does not upload this telemetry to the publisher. Automatic setup makes network requests to obtain profile dependencies.
+Settings are stored locally at `%LOCALAPPDATA%\mimiminer\profile.json`; learned entry points are stored in the adjacent `entry-memory` folder. The client mod writes local telemetry under the selected game folder's `mam_telemetry` directory, which can include server addresses, coordinates, held-item information, your username, nearby player names/IDs/distances and name-mention event counters. Full chat text is not written by this feature. The app does not upload this telemetry to the publisher. If you enable the greeting, it sends that message to your connected server. Automatic setup makes network requests to obtain profile dependencies.
 
 To remove the app, stop mining, close Minecraft and delete the extracted app folder. To remove the mod from an existing profile, remove `mimiminer-fabric-1.21.jar` from that profile's `mods` folder. Do not remove shared Fabric dependencies if other mods need them. You may also remove the dedicated **mimiminer 1.21** Launcher profile and instance, and the local settings folder if you no longer need your settings. Back up worlds and settings before deleting a game instance.
 
@@ -98,6 +142,6 @@ Shout-out to **[Fxdedglory / Minecraft-Auto-Miner](https://github.com/Fxdedglory
 
 This publication contains release documentation and a prebuilt app; application source and private development history are not published. The original Minecraft-Auto-Miner implementation and Baritone binaries are not distributed in this package. Mimi is a new robot mascot generated for this release without reference images; the previously supplied third-party logo is not included.
 
-See **[LICENSE.txt](LICENSE.txt)** for the app's freeware terms and **[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)** for bundled component licenses. You can also read notices in the app under **About & licenses**. Third-party license rights are unaffected by the app's freeware terms.
+See **[LICENSE.txt](LICENSE.txt)** for the app's freeware terms and **[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)** for bundled component licenses. You can also read notices in the app under **Settings → About & licenses**. Third-party license rights are unaffected by the app's freeware terms.
 
 Read the **[policy review](POLICY_REVIEW.md)** for the limits of the pre-publication review. Hobby use and free distribution do not remove copyright or platform-policy requirements.

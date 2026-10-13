@@ -8,6 +8,7 @@ Third-party components retain their own licenses. The app's freeware terms do no
 | Fabric Installer 1.1.2 | Profile setup | Apache-2.0; Fabric-installer-license.txt |
 | CPython 3.13.9 and standard library | App runtime; no changes to CPython source | PSF and historical licenses; Python-license.txt and CPython-third-party-notices.txt |
 | Tcl / Tk 8.6 | Desktop interface | Tcl-license.txt and Tk-license.txt |
+| Monocraft v4.2.1 by Idrees Hassan | Unmodified desktop font; registered for the app process only | SIL Open Font License 1.1; Monocraft-license.txt |
 | OpenSSL 3 | Runtime dependency | OpenSSL-license.txt |
 | libffi 3.4.4 | Runtime dependency | libffi-license.txt |
 | bzip2 1.0.8 | Runtime dependency | bzip2-license.txt |
