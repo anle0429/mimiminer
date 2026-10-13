@@ -11,11 +11,12 @@ Windows x64 desktop release for Minecraft Java 1.21 with Fabric. Download and op
 - Refresh observed mine blocks after rank changes; use `/mine go` on Akuma.
 - **Auto-detect mine size**: update and save Pos and the mining route when nearby mine boundaries can be verified. Turn it off to keep a manual region fixed. Inconclusive detection keeps the existing bounds.
 - **Flight mode** off requests ground movement, including disabling observed flight after a teleport. Ground scanning can look for side blocks from a protected floor.
+- Updated 0.0.2 build: mine inspection releases mining keys while keeping background mode alive, fixing the automatic lost-focus menu during scans. Manually opened menus still pause mining.
 - New transparent Mimi robot mascot, publisher contact and bundled license notices.
 
 **TalonMC Prison has been tested; Akuma Prison now has successful short local mining trials. Other configurations remain experimental.** Testing is not server approval. Use automation only where applicable game policies and server rules allow it. No ban-free, fixed-speed or multi-hour uptime guarantee is provided.
 
-Validation: 81 automated tests passed. The previous Akuma background trial recorded 3,328 direct client breaks in three minutes and an increasing server counter, with Minecraft unfocused; that trial used flight. Automatic geometry recognition was checked against the live mine and automated cases. Complete live ground-only mining through rank changes was not validated before publication, so ground mode and automatic mine sizing remain experimental.
+Validation: 82 automated tests passed. The previous Akuma background trial recorded 3,328 direct client breaks in three minutes and an increasing server counter, with Minecraft unfocused; that trial used flight. A subsequent 60-second ground-only background trial recorded 604 client breaks with no flying or open menus. Automatic geometry recognition was checked against the live mine and automated cases. Extended ground operation through every rank change remains unverified; automatic mine sizing remains experimental.
 
 Read the README and POLICY_REVIEW.md before use. Check the SHA256SUMS.txt included with this release. The application source and personal settings are not included. Baritone is optional and is not bundled.
 

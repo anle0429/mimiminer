@@ -20,7 +20,7 @@ Publisher: **An Le ([anle0429](https://github.com/anle0429))**. Product and righ
 | Minecraft Java **1.21** with Fabric | Required; automatic setup is available |
 | TalonMC Prison | Successful local testing; server updates, pickaxes and mine layouts may change results |
 | Other servers | Unsupported / experimental; no compatibility promise |
-| Akuma Prison | Short background trials with flight passed; ground mode and automatic mine sizing remain experimental. Use `/mine go`. |
+| Akuma Prison | Short background trials with flight and ground movement passed; extended ground uptime and automatic mine sizing remain experimental. Use `/mine go`. |
 | Other Minecraft versions, Bedrock, Forge or NeoForge | Not supported by 0.0.2 |
 
 Successful testing on TalonMC **does not mean TalonMC permits or endorses this app**. We have not verified an official TalonMC rule allowing auto-mining. Check current server rules and obtain permission before using automation. Applicable Minecraft, Microsoft and Xbox policies also apply; server permission does not override them. Automation that creates an unfair advantage may violate those policies. There is no ban-free guarantee, fixed BPS promise or verified many-hour uptime guarantee.
@@ -59,7 +59,7 @@ The mine command can return you to a point outside the selected volume. The app 
 
 On **Akuma**, enter **Prison** first, then use **`/mine go`** and select corners inside your current mine. Do not reuse TalonMC coordinates. Akuma can replace block types and enlarge the mine as your rank increases. Block recognition refreshes when mining progress disappears. With **Auto-detect mine size** enabled, the app periodically checks the nearby mine and updates both Pos fields and the saved route when it can verify its boundaries. If detection is inconclusive, it keeps the existing corners. Turn this option off to keep a manually selected subregion fixed. Automatic detection is experimental and does not support every mine layout; the selected volume remains limited to 300,000 blocks.
 
-**Flight mode** off requests ground movement, including turning off actual flight if it is observed after a teleport. Ground scanning now includes nearby side blocks when standing on a protected floor. These changes passed automated tests, but the complete live ground-only mining and rank-up workflow was not validated before this release. The recorded successful Akuma background trials used flight; do not interpret those trials as evidence of ground-mode reliability.
+**Flight mode** off requests ground movement, including turning off actual flight if it is observed after a teleport. Ground scanning includes nearby side blocks when standing on a protected floor. Short ground-only background trials now pass, including mine inspection without opening Minecraft's lost-focus menu. Complete live ground operation across all rank changes and extended sessions remains unverified.
 
 ## Options
 
