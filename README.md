@@ -1,6 +1,6 @@
 <p align="center"><img src="assets/mimi.png" alt="Mimi, the mimiminer mascot" width="144"></p>
 
-# mimiminer 0.0.1
+# mimiminer 0.0.2
 I coded this with the help of Codex just because I'm bored during a hackathon and has too much quota.
 
 I just realized they don't allow to automine in this server tho, use it as ur own risk.
@@ -12,7 +12,7 @@ Publisher: **An Le ([anle0429](https://github.com/anle0429))**. Product and righ
 
 ## Compatibility — please read first
 
-**This release works only with certain server configurations. TalonMC Prison is the only configuration we have successfully tested so far. It is not a universal auto-miner.**
+**This release works only with certain server configurations. TalonMC Prison has been tested, and short mining trials on Akuma Prison now work with the setup below. It is not a universal auto-miner.**
 
 | Requirement / server | Status |
 | --- | --- |
@@ -20,14 +20,14 @@ Publisher: **An Le ([anle0429](https://github.com/anle0429))**. Product and righ
 | Minecraft Java **1.21** with Fabric | Required; automatic setup is available |
 | TalonMC Prison | Successful local testing; server updates, pickaxes and mine layouts may change results |
 | Other servers | Unsupported / experimental; no compatibility promise |
-| Akuma | Known unresolved behavior: the bot can leave the mine, become idle and teleport back |
-| Other Minecraft versions, Bedrock, Forge or NeoForge | Not supported by 0.0.1 |
+| Akuma Prison | Short background trials with flight passed; ground mode and automatic mine sizing remain experimental. Use `/mine go`. |
+| Other Minecraft versions, Bedrock, Forge or NeoForge | Not supported by 0.0.2 |
 
 Successful testing on TalonMC **does not mean TalonMC permits or endorses this app**. We have not verified an official TalonMC rule allowing auto-mining. Check current server rules and obtain permission before using automation. Applicable Minecraft, Microsoft and Xbox policies also apply; server permission does not override them. Automation that creates an unfair advantage may violate those policies. There is no ban-free guarantee, fixed BPS promise or verified many-hour uptime guarantee.
 
 ## Download
 
-Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.1**. Open it to get started. The executable includes its license notices under **About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
+Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.2**. Open it to get started. The executable includes its license notices under **About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
 
 The app includes its own runtime, so you do not need to install Python. You still need a licensed Minecraft Java account, the Minecraft Launcher and internet access for first-time setup. This release is unsigned; check the release SHA-256 before running a downloaded copy. Do not disable security protection to run it.
 
@@ -46,21 +46,30 @@ Minecraft itself is downloaded through the Launcher. This package does not inclu
 1. Choose **two opposite corners of the entire block volume**, including its depth. For example, Pos 1 `100, 70, 100` and Pos 2 `120, 40, 120` describe an inclusive rectangular volume.
 2. Enter each corner's **X, Y, Z** values. Alternatively, stand at a corner and click **Use my position** beside that Pos. This captures the block coordinate where you are standing; adjust it manually if the mine's corner block is below you or farther down. F3 can help you check coordinates.
 3. Set **Mine command** to the return command your server accepts, such as `/mine teleport`. Test the command yourself first. Commands vary by server.
-4. Enable **Fast adaptive sweep**. Enable **Auto teleport recovery** if you want to return when mining stops making progress. Enable **Maintain flight height** only if flight is available and allowed on your server.
+4. Enable **Fast adaptive sweep**. Enable **Auto teleport recovery** if you want to return when mining stops making progress. Leave **Flight mode** off for ground movement; turn it on only when flight is available and allowed on your server.
 5. Click **START**, return to Minecraft, and close menus before the countdown finishes.
 6. Press **F8** to turn mining on or off. Click the **Toggle key** button to choose a different key. You can also click **STOP**.
+7. Leave **Run in background** enabled to keep mining when you Alt+Tab to another application. It is enabled by default. Turn it off if you prefer mining to pause whenever Minecraft loses focus.
 
-Stop before changing the corners. Opening a menu or switching away from Minecraft pauses mining inputs. Keep Minecraft focused while the bot runs.
+Stop before changing the corners. Opening chat, a game menu or a loading overlay still pauses mining inputs. With **Run in background** enabled, switching away from Minecraft continues the active bot; Minecraft's automatic lost-focus menu is suppressed only while the bot's connection remains alive. It does not lock your desktop cursor or send mining keys to other apps. Keep the app and Minecraft running; sleep, suspension, disconnection and an unloaded world cannot continue mining.
+
+Upgrading from 0.0.1 requires installing the updated client mod and restarting Minecraft. The app will tell you if your loaded mod does not support background mode. Existing settings and mine corners are preserved. F8 is a global shortcut; select another toggle key if it conflicts with the application you use while mining.
 
 The mine command can return you to a point outside the selected volume. The app remembers observed entry points for each server and mine configuration; it does not expand the selected mining volume to include that point. A new server or layout may still need fresh configuration.
+
+On **Akuma**, enter **Prison** first, then use **`/mine go`** and select corners inside your current mine. Do not reuse TalonMC coordinates. Akuma can replace block types and enlarge the mine as your rank increases. Block recognition refreshes when mining progress disappears. With **Auto-detect mine size** enabled, the app periodically checks the nearby mine and updates both Pos fields and the saved route when it can verify its boundaries. If detection is inconclusive, it keeps the existing corners. Turn this option off to keep a manually selected subregion fixed. Automatic detection is experimental and does not support every mine layout; the selected volume remains limited to 300,000 blocks.
+
+**Flight mode** off requests ground movement, including turning off actual flight if it is observed after a teleport. Ground scanning now includes nearby side blocks when standing on a protected floor. These changes passed automated tests, but the complete live ground-only mining and rank-up workflow was not validated before this release. The recorded successful Akuma background trials used flight; do not interpret those trials as evidence of ground-mode reliability.
 
 ## Options
 
 | Option | Purpose |
 | --- | --- |
 | Fast adaptive sweep | Continuously scan for reachable blocks while mining |
+| Run in background | Continue the active bot when Minecraft loses focus; menus still pause it |
 | Auto teleport recovery | Send your mine command when progress stalls, with a cooldown between retries |
-| Maintain flight height | Use available flight; does not grant flight permission |
+| Flight mode | On: use server-granted flight and maintain height. Off: request ground movement. |
+| Auto-detect mine size | Verify nearby mine boundaries, update Pos and save the route; turn off for a fixed manual region |
 | Sprint | Sprint while moving |
 | Baritone navigation | Optional navigation using a separately installed compatible Baritone; disabled by default |
 
@@ -69,9 +78,9 @@ The mine command can return you to a point outside the selected volume. The app 
 ## Troubleshooting
 
 - **Not connected:** launch the selected Fabric 1.21 profile, enter a world, and confirm that the app points to that profile's game folder. Restart Minecraft after installing the mod.
-- **It does not mine:** close chat and menus, focus Minecraft, select a pickaxe, and check both corners. On another server, stop: compatibility may be missing.
+- **It does not mine:** close chat and menus, select a pickaxe, and check both corners. Enable **Run in background** for Alt+Tab, or keep Minecraft focused if it is off. On another server, stop: compatibility may be missing.
 - **It repeatedly teleports:** test the command, check the volume and entry point, and confirm that the mine contains reachable blocks. Disable recovery while investigating. It cannot fix every server-specific mechanic.
-- **It leaves the mine:** stop immediately and recheck the coordinates. Other-server navigation is not verified; the known Akuma behavior is unresolved in this release.
+- **It leaves the mine:** stop and recheck the coordinates and return command. On Akuma, configure the current mine after joining Prison. Enable **Auto-detect mine size** for verified size changes, or update both corners manually. Ground mode and other layouts remain experimental.
 - **BPS is lower than expected:** pickaxe speed, enchants, reach, mine contents, network latency and server limits affect the result. A server's `Blocks` / `Blocks Mined` counter can also include plugin effects, so it may differ from direct client block breaks.
 - **Hotkey unavailable:** select another key or use START / STOP.
 

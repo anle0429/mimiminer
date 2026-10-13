@@ -1,6 +1,6 @@
 # Pre-publication policy and license review
 
-Reviewed on **2026-10-11** for a free Windows release published from the **United States**. This is a limited technical and policy review, not a legal opinion, permission from a rights holder, or a guarantee against claims. State-specific questions and disputed rights require qualified legal advice.
+Initial review: **2026-10-11**. Release 0.0.2 update reviewed on **2026-10-12** for a free Windows release published from the **United States**. The update adds optional background operation using the existing client bridge, with a lease timeout and menu/world checks. It does not change the permitted-use restrictions. This is a limited technical and policy review, not a legal opinion, permission from a rights holder, or a guarantee against claims. State-specific questions and disputed rights require qualified legal advice.
 
 ## Copyright and provenance
 
@@ -22,7 +22,7 @@ Minecraft's EULA also references the [Microsoft Services Agreement](https://www.
 
 ## TalonMC and other servers
 
-TalonMC Prison is the only configuration successfully tested locally so far. That is a compatibility observation, not approval by TalonMC. The official [website](https://www.talonmc.net/) and [store](https://store.talonmc.net/) were reviewed. Their linked purchase terms do not establish permission to auto-mine, and no accessible official rule expressly allowing this automation was verified. Current rules or explicit server permission must be checked before use. The release does not claim universal compatibility, a ban-free result or proven multi-hour reliability.
+TalonMC Prison was the only configuration successfully tested locally at the initial 0.0.1 review. Short Akuma Prison trials subsequently passed for 0.0.2. These are compatibility observations, not server approval. The official [website](https://www.talonmc.net/) and [store](https://store.talonmc.net/) were reviewed. Their linked purchase terms do not establish permission to auto-mine, and no accessible official rule expressly allowing this automation was verified. Current rules or explicit server permission must be checked before use on either server. The release does not claim universal compatibility, a ban-free result or proven multi-hour reliability.
 
 ## GitHub
 
