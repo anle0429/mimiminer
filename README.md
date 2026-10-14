@@ -1,6 +1,6 @@
 <p align="center"><img src="assets/mimi.png" alt="Mimi, the mimiminer mascot" width="144"></p>
 
-# mimiminer 0.0.2
+# mimiminer 0.0.3
 I coded this with the help of Codex just because I'm bored during a hackathon and has too much quota.
 
 I just realized they don't allow to automine in this server tho, use it as ur own risk.
@@ -10,18 +10,26 @@ A small Windows desktop app for mining inside a selected block volume in Minecra
 
 Publisher: **An Le ([anle0429](https://github.com/anle0429))**. Product and rights inquiries: **[work.anle05@gmail.com](mailto:work.anle05@gmail.com)**. The publisher is responsible for this app. It is not affiliated with TalonMC or the projects credited below.
 
-## What's new in the updated v0.0.2
+## What's new in v0.0.3
 
-Updated **October 13, 2026**, with client mod **0.4.5**:
+Released **October 14, 2026**, with client mod **0.4.6**:
+
+- **Reset every 45 seconds:** enabled by default, with its own switch in desktop Settings and the in-game Hub. Sends `/mine reset`, then your saved mine return command, without waiting for low BPS. Requires Auto teleport recovery. Other recovery resets restart the 45-second timer. Menus, pickaxe upgrades and Pause & Alert defer a due reset until normal mining resumes.
+- **No reset bursts:** all reset requests share the existing 12-second minimum cooldown. A late timer requests one reset, and starts a new 45-second interval; it does not replay missed intervals. An uncertain command still reserves the next interval.
+- **Upgrade Best every 30 minutes:** replaces the old per-enchant/per-currency buyer. Right-click the held pickaxe, find the server's **Upgrade Best** button, click it once and return to mining. First check is after 30 minutes; the server decides the upgrades and currency. The old Tokens/Orbs/Gems switches have been removed.
+
+The live Akuma timer trial completed two resets **45.13 seconds apart**, with background mining resuming after both return teleports. The current server Upgrade Best button was unavailable, so an actual purchase remains unverified. See **[release notes](RELEASE_NOTES.md)** for exact behavior, test conditions and update steps.
+
+Features carried forward from v0.0.2:
 
 - **In-game Hub:** a transparent panel with Minecraft's font, configurable shortcut/opacity, position capture, settings and Start/Stop/Save/Resume. Mining continues while this panel is open.
-- **Pickaxe upgrades:** optional automatic purchases using your selected Tokens, Orbs and/or Gems. Skips locked/MAXED/unrecognized items and checks observed level progress before buying again.
+- **Pickaxe menu control:** opens the held pickaxe using the normal right-click action and returns to mining after an owned menu closes.
 - **Low-BPS recovery:** request `/mine reset`, then `/mine go`, `/mine teleport` or your configured return command. At least 12 seconds between reset requests.
 - **Player balances:** read visible money, Tokens, Orbs/Ores, Gems and Credits, including K/M/B/T/Q abbreviations.
 - **Background fixes:** keep the bot running through mine inspection, return teleports and owned pickaxe-menu transitions after Alt+Tab.
 - **Minimal desktop UI:** Minecraft-style Monocraft font, compact Mine view and persistent Start/Stop controls. Adaptive scan optimization and Pause & Alert are included.
 
-Download the updated EXE and reinstall the bundled mod, then restart Minecraft. See **[release notes](RELEASE_NOTES.md)** for tests and limits. This replaces the earlier v0.0.2 download; the current EXE SHA-256 starts with **`19b79e36aeb8`**.
+Download the new EXE and reinstall the bundled mod, then restart Minecraft. Check the included **SHA256SUMS.txt**. Previous v0.0.2 downloads remain available in Releases.
 
 ## Compatibility — please read first
 
@@ -34,13 +42,13 @@ Download the updated EXE and reinstall the bundled mod, then restart Minecraft. 
 | TalonMC Prison | Successful local testing; server updates, pickaxes and mine layouts may change results |
 | Other servers | Unsupported / experimental; no compatibility promise |
 | Akuma Prison | Short background trials with flight and ground movement passed; extended ground uptime and automatic mine sizing remain experimental. Use `/mine go`. |
-| Other Minecraft versions, Bedrock, Forge or NeoForge | Not supported by 0.0.2 |
+| Other Minecraft versions, Bedrock, Forge or NeoForge | Not supported by 0.0.3 |
 
 Successful testing on TalonMC **does not mean TalonMC permits or endorses this app**. We have not verified an official TalonMC rule allowing auto-mining. Check current server rules and obtain permission before using automation. Applicable Minecraft, Microsoft and Xbox policies also apply; server permission does not override them. Automation that creates an unfair advantage may violate those policies. There is no ban-free guarantee, fixed BPS promise or verified many-hour uptime guarantee.
 
 ## Download
 
-Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.2**. Open it to get started. The executable includes its license notices under **Settings → About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
+Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.3**. Open it to get started. The executable includes its license notices under **Settings → About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
 
 The app includes its own runtime, so you do not need to install Python. You still need a licensed Minecraft Java account, the Minecraft Launcher and internet access for first-time setup. This release is unsigned; check the release SHA-256 before running a downloaded copy. Do not disable security protection to run it.
 
@@ -63,14 +71,15 @@ The **in-game Hub** opens with **Right Shift** by default. Open the EXE once and
 **Prison automation** is configurable in the desktop Settings and the in-game Hub:
 
 - **Reset at low BPS:** measures direct client block breaks over an active window, then requests `/mine reset` and your configured return command when low progress persists. Idle recovery can also request a reset. The app waits at least **12 seconds** between reset requests and warms up after teleports or menu pauses. The server can reject a command; delivery to the client does not confirm a server reset. Raise or lower the BPS threshold for your pickaxe.
-- **Auto upgrade pickaxe:** opens the held pickaxe with the normal right-click action and reads recognized English upgrade tooltips, including small-cap text and resource-pack glyphs. It skips locked and MAXED items, buys affordable single or explicitly advertised bulk upgrades, and checks that the level increased before buying again. It works through each selected currency, resumes mining after a bounded cycle, and checks again later. Cached tooltips get one menu refresh; a purchase that remains unconfirmed is skipped for that cycle.
-- **Currencies:** Tokens is selected initially; Orbs and Gems are separate optional switches. Akuma's observed menu says **Orbs**, not Ores. The app does not assume that differently named currencies mean the same thing. Rounded sidebar balances are estimates. Unknown menus and prices are skipped. Auto upgrade is off until enabled, and Pause & Alert interrupts upgrade automation too.
+- **Reset every 45 seconds:** a separate timer, enabled by default. Turn it off in Settings if you only want low-BPS/idle recovery. It requires **Auto teleport recovery** to return safely to your mine. It waits through menus, upgrade cycles and latched alerts. Every reset request restarts the interval, including low-BPS or idle resets. Sleep/disconnection/menu delays do not cause accumulated reset requests.
+- **Upgrade Best every 30 minutes:** opt in with this switch. After 30 minutes of an active worker, it opens the held pickaxe normally, identifies the exact **Upgrade Best** label (including small-cap/resource-font text), and clicks that button once. It closes the owned menu and resumes mining. A missing, ambiguous or unavailable button is skipped. An uncertain click is not retried; the next check is reserved for 30 minutes later. Pause & Alert interrupts the cycle.
+- **Server-controlled upgrades:** the server's Upgrade Best function decides what to buy and which balances to spend. The app no longer selects individual enchants, calculates upgrade prices or offers Tokens/Orbs/Gems spending switches. Auto upgrade is off until enabled. Sidebar balances are still shown as estimates.
 
 The balance reader supports K/M/B/T/Q suffixes and keeps the server's abbreviated balance text in the in-game panel. The local telemetry also records the visible sidebar lines to diagnose server formatting differences.
 
-These additions require the bundled client mod **0.4.5** and a Minecraft restart. Download the updated v0.0.2 release, close Minecraft, and use **Settings → Minecraft setup → INSTALL MOD** for your current Fabric 1.21 profile.
+The new in-game timer switch requires bundled client mod **0.4.6** and a Minecraft restart. Download v0.0.3, close Minecraft, and use **Settings → Minecraft setup → INSTALL MOD** for your current Fabric 1.21 profile. Existing settings and custom keys are kept.
 
-The latest Akuma trial completed 90 seconds with background mining, currency-tab checks and reset/return transitions. Tokens purchases were verified in earlier short trials; current Orb enchants were level-locked, so Orb purchases remain unverified. This does not establish multi-hour uptime or compatibility with other upgrade menus.
+The previous v0.0.2 Akuma trial completed 90 seconds with background mining, the older upgrade mechanism and reset/return transitions. Those results do not establish compatibility for every server's Upgrade Best button or multi-hour uptime.
 
 1. Choose **two opposite corners of the entire block volume**, including its depth. For example, Pos 1 `100, 70, 100` and Pos 2 `120, 40, 120` describe an inclusive rectangular volume.
 2. Enter each corner's **X, Y, Z** values. Alternatively, stand at a corner and click **Use my position** beside that Pos. This captures the block coordinate where you are standing; adjust it manually if the mine's corner block is below you or farther down. F3 can help you check coordinates.
@@ -106,7 +115,8 @@ The displayed scan BPS measures local successful block interactions over complet
 | Run in background | Continue the active bot when Minecraft loses focus; menus still pause it |
 | Auto teleport recovery | Send your mine command when progress stalls, with a cooldown between retries |
 | Reset at low BPS | Request `/mine reset`, then return; minimum 12 seconds between reset requests |
-| Auto upgrade pickaxe | Buy recognized affordable upgrades using the currencies you enable |
+| Reset every 45 seconds | Separate periodic reset timer; enabled by default, requires Auto teleport recovery, waits through menus/alerts |
+| Upgrade Best every 30 minutes | Open the held pickaxe and click the server's Upgrade Best once; replaces individual enchant purchases |
 | In-game Hub | Transparent panel opened with Right Shift; configurable in-game key and opacity |
 | Flight mode | On: use server-granted flight and maintain height. Off: request ground movement. |
 | Auto-detect mine size | Verify nearby mine boundaries, update Pos and save the route; turn off for a fixed manual region |

@@ -1,4 +1,4 @@
-mimiminer 0.0.2
+mimiminer 0.0.3
 Publisher: An Le (@anle0429)
 Contact: work.anle05@gmail.com
 
