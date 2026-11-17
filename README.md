@@ -1,6 +1,6 @@
 <p align="center"><img src="assets/mimi.png" alt="Mimi, the mimiminer mascot" width="144"></p>
 
-# mimiminer 0.0.3
+# mimiminer 0.0.4
 I coded this with the help of Codex just because I'm bored during a hackathon and has too much quota.
 
 I just realized they don't allow to automine in this server tho, use it as ur own risk.
@@ -10,17 +10,20 @@ A small Windows desktop app for mining inside a selected block volume in Minecra
 
 Publisher: **An Le ([anle0429](https://github.com/anle0429))**. Product and rights inquiries: **[work.anle05@gmail.com](mailto:work.anle05@gmail.com)**. The publisher is responsible for this app. It is not affiliated with TalonMC or the projects credited below.
 
-## What's new in v0.0.3
+## What's new in v0.0.4
 
-Released **October 14, 2026**, with client mod **0.4.6**:
+Released **November 17, 2026**, with client mod **0.4.7**:
 
-- **Reset every 45 seconds:** enabled by default, with its own switch in desktop Settings and the in-game Hub. Sends `/mine reset`, then your saved mine return command, without waiting for low BPS. Requires Auto teleport recovery. Other recovery resets restart the 45-second timer. Menus, pickaxe upgrades and Pause & Alert defer a due reset until normal mining resumes.
-- **No reset bursts:** all reset requests share the existing 12-second minimum cooldown. A late timer requests one reset, and starts a new 45-second interval; it does not replay missed intervals. An uncertain command still reserves the next interval.
-- **Upgrade Best every 30 minutes:** replaces the old per-enchant/per-currency buyer. Right-click the held pickaxe, find the server's **Upgrade Best** button, click it once and return to mining. First check is after 30 minutes; the server decides the upgrades and currency. The old Tokens/Orbs/Gems switches have been removed.
+- **Fix for walking without mining:** mine detection can recover the full depth of a shallow saved region after verifying enclosed mine layers and a protected floor. The selected region limit increases to **500,000 blocks**. Inconclusive detection keeps your existing corners.
+- **A different route after each return:** confirmed mine returns advance through eight starting sectors. The lane order alternates and the client aligns with the new route to spread digging across the mine. This does not guarantee uniform excavation of the entire volume.
+- **More reliable idle recovery:** uses direct client block breaks when available, so passive scoreboard gains such as Minion do not hide stalled mining. Reset/return handling also avoids learning a temporary reset position as the permanent `/mine go` entry.
 
-The live Akuma timer trial completed two resets **45.13 seconds apart**, with background mining resuming after both return teleports. The current server Upgrade Best button was unavailable, so an actual purchase remains unverified. See **[release notes](RELEASE_NOTES.md)** for exact behavior, test conditions and update steps.
+The earlier October 14 Akuma trial recorded **2,171 direct client breaks** and five confirmed returns with changing sectors. A separate Alt+Tab trial recorded **743 direct client breaks in about 55 seconds**. These are short observations, not a fixed BPS or extended-uptime promise. See **[release notes](RELEASE_NOTES.md)** for validation and update steps.
 
-Features carried forward from v0.0.2:
+Features carried forward from v0.0.3:
+
+- **Reset every 45 seconds:** enabled by default, independently of low-BPS recovery. Requests `/mine reset`, then the saved return command. All reset modes share a 12-second minimum cooldown; menus, upgrades and alerts defer the timer.
+- **Upgrade Best every 30 minutes:** opt in to open the held pickaxe, click the server's **Upgrade Best** button once and resume mining. First check is after 30 minutes; the server chooses upgrades and currency. An actual server purchase remains unverified.
 
 - **In-game Hub:** a transparent panel with Minecraft's font, configurable shortcut/opacity, position capture, settings and Start/Stop/Save/Resume. Mining continues while this panel is open.
 - **Pickaxe menu control:** opens the held pickaxe using the normal right-click action and returns to mining after an owned menu closes.
@@ -29,7 +32,7 @@ Features carried forward from v0.0.2:
 - **Background fixes:** keep the bot running through mine inspection, return teleports and owned pickaxe-menu transitions after Alt+Tab.
 - **Minimal desktop UI:** Minecraft-style Monocraft font, compact Mine view and persistent Start/Stop controls. Adaptive scan optimization and Pause & Alert are included.
 
-Download the new EXE and reinstall the bundled mod, then restart Minecraft. Check the included **SHA256SUMS.txt**. Previous v0.0.2 downloads remain available in Releases.
+Download the new EXE and reinstall the bundled mod, then restart Minecraft. Check the included **SHA256SUMS.txt**. Previous releases remain available in Releases.
 
 ## Compatibility — please read first
 
@@ -42,13 +45,13 @@ Download the new EXE and reinstall the bundled mod, then restart Minecraft. Chec
 | TalonMC Prison | Successful local testing; server updates, pickaxes and mine layouts may change results |
 | Other servers | Unsupported / experimental; no compatibility promise |
 | Akuma Prison | Short background trials with flight and ground movement passed; extended ground uptime and automatic mine sizing remain experimental. Use `/mine go`. |
-| Other Minecraft versions, Bedrock, Forge or NeoForge | Not supported by 0.0.3 |
+| Other Minecraft versions, Bedrock, Forge or NeoForge | Not supported by 0.0.4 |
 
 Successful testing on TalonMC **does not mean TalonMC permits or endorses this app**. We have not verified an official TalonMC rule allowing auto-mining. Check current server rules and obtain permission before using automation. Applicable Minecraft, Microsoft and Xbox policies also apply; server permission does not override them. Automation that creates an unfair advantage may violate those policies. There is no ban-free guarantee, fixed BPS promise or verified many-hour uptime guarantee.
 
 ## Download
 
-Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.3**. Open it to get started. The executable includes its license notices under **Settings → About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
+Open **[Releases](https://github.com/anle0429/mimiminer/releases)** and download **mimiminer.exe** for **v0.0.4**. Open it to get started. The executable includes its license notices under **Settings → About & licenses**. A Windows ZIP is also available if you want the app, guide and notices together; extract it before opening the app. Keep notices with any package you share.
 
 The app includes its own runtime, so you do not need to install Python. You still need a licensed Minecraft Java account, the Minecraft Launcher and internet access for first-time setup. This release is unsigned; check the release SHA-256 before running a downloaded copy. Do not disable security protection to run it.
 
@@ -77,7 +80,7 @@ The **in-game Hub** opens with **Right Shift** by default. Open the EXE once and
 
 The balance reader supports K/M/B/T/Q suffixes and keeps the server's abbreviated balance text in the in-game panel. The local telemetry also records the visible sidebar lines to diagnose server formatting differences.
 
-The new in-game timer switch requires bundled client mod **0.4.6** and a Minecraft restart. Download v0.0.3, close Minecraft, and use **Settings → Minecraft setup → INSTALL MOD** for your current Fabric 1.21 profile. Existing settings and custom keys are kept.
+The route fixes require bundled client mod **0.4.7** and a Minecraft restart. Download v0.0.4, close Minecraft, and use **Settings → Minecraft setup → INSTALL MOD** for your current Fabric 1.21 profile. Existing settings and custom keys are kept. With Auto-detect mine size enabled, verified detection can update your saved corners.
 
 The previous v0.0.2 Akuma trial completed 90 seconds with background mining, the older upgrade mechanism and reset/return transitions. Those results do not establish compatibility for every server's Upgrade Best button or multi-hour uptime.
 
@@ -98,11 +101,13 @@ Upgrading from 0.0.1 requires installing the updated client mod and restarting M
 
 The mine command can return you to a point outside the selected volume. The app remembers observed entry points for each server and mine configuration; it does not expand the selected mining volume to include that point. A new server or layout may still need fresh configuration.
 
-On **Akuma**, enter **Prison** first, then use **`/mine go`** and select corners inside your current mine. Do not reuse TalonMC coordinates. Akuma can replace block types and enlarge the mine as your rank increases. Block recognition refreshes when mining progress disappears. With **Auto-detect mine size** enabled, the app periodically checks the nearby mine and updates both Pos fields and the saved route when it can verify its boundaries. If detection is inconclusive, it keeps the existing corners. Turn this option off to keep a manually selected subregion fixed. Automatic detection is experimental and does not support every mine layout; the selected volume remains limited to 300,000 blocks.
+On **Akuma**, enter **Prison** first, then use **`/mine go`** and select corners inside your current mine. Do not reuse TalonMC coordinates. Akuma can replace block types and enlarge the mine as your rank increases. Block recognition refreshes when mining progress disappears. With **Auto-detect mine size** enabled, the app periodically checks the nearby mine and updates both Pos fields and the saved route when it can verify its boundaries. If detection is inconclusive, it keeps the existing corners. Turn this option off to keep a manually selected subregion fixed. Automatic detection is experimental and does not support every mine layout; the selected volume is limited to **500,000 blocks**.
+
+Confirmed mine returns rotate through eight starting sectors automatically, with alternating lane order. The route counter is saved locally. A Nuke drop inside the mine does not by itself advance the return sector. If the bot walks without breaking blocks, check that your corners include the full intended depth; the client will not mine outside them.
 
 **Flight mode** off requests ground movement, including turning off actual flight if it is observed after a teleport. Ground scanning includes nearby side blocks when standing on a protected floor. Short ground-only background trials now pass, including mine inspection without opening Minecraft's lost-focus menu. Complete live ground operation across all rank changes and extended sessions remains unverified.
 
-**Auto-optimize scan** is enabled by default with Fast adaptive sweep. The Hub displays the current strategy, measured direct-client BPS and its reason for changing. It compares short trials, retains a strategy when improvements repeat, and reassesses after teleports, mine block changes or verified size changes. Pause & Alert and normal mining boundaries remain in effect. Turn it off to use the fixed adaptive sweep. This requires client mod **0.4.4** and a Minecraft restart.
+**Auto-optimize scan** is enabled by default with Fast adaptive sweep. The Hub displays the current strategy, measured direct-client BPS and its reason for changing. It compares short trials, retains a strategy when improvements repeat, and reassesses after teleports, mine block changes or verified size changes. Pause & Alert and normal mining boundaries remain in effect. Turn it off to use the fixed adaptive sweep. Install the bundled client mod **0.4.7** and restart Minecraft when updating.
 
 The displayed scan BPS measures local successful block interactions over completed active windows. It excludes paused time and does not count the server scoreboard bonus from Nuke effects. It is not a server-confirmed throughput guarantee. Brief trials can reduce output, and no strategy is guaranteed best in every situation. Learning stays in memory for the current Minecraft session; it is not uploaded.
 
